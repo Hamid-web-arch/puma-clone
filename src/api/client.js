@@ -1,39 +1,60 @@
-export const API_BASE_URL = 'http://localhost:3001'
+// Backend-siz "API": məhsullar db.json-dan statik oxunur,
+// istifadəçilər isə brauzerin localStorage-ında saxlanır.
+// Bu sayədə layihə GitHub Pages kimi statik hostinqdə işləyir.
+import db from '../../db.json'
 
-async function request(path, options) {
-    const response = await fetch(`${API_BASE_URL}${path}`, options)
+const USERS_KEY = 'puma_users'
 
-    if (!response.ok) {
-        throw new Error(`API error ${response.status}: ${response.statusText}`)
+function readUsers() {
+    try {
+        const raw = localStorage.getItem(USERS_KEY)
+        if (raw) return JSON.parse(raw)
+    } catch {
+        // localStorage əlçatan deyilsə, seed istifadəçilərə qayıdırıq
     }
-
-    return response.json()
+    return structuredClone(db.users)
 }
 
-export function getProducts() {
-    return request('/products')
+function writeUsers(users) {
+    localStorage.setItem(USERS_KEY, JSON.stringify(users))
 }
 
-export function getProduct(id) {
-    return request(`/products/${id}`)
+function clone(value) {
+    return structuredClone(value)
 }
 
-export function getUserByEmail(email) {
-    return request(`/users?email=${encodeURIComponent(email)}`)
+export async function getProducts() {
+    return clone(db.products)
 }
 
-export function createUser(user) {
-    return request('/users', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(user),
-    })
+export async function getProduct(id) {
+    const product = db.products.find((p) => String(p.id) === String(id))
+    if (!product) {
+        throw new Error('API error 404: Not Found')
+    }
+    return clone(product)
 }
 
-export function updateUser(id, updates) {
-    return request(`/users/${id}`, {
-        method: 'PATCH',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(updates),
-    })
+export async function getUserByEmail(email) {
+    return readUsers().filter((u) => u.email === email)
+}
+
+export async function createUser(user) {
+    const users = readUsers()
+    const nextId = users.reduce((max, u) => Math.max(max, Number(u.id) || 0), 0) + 1
+    const created = { ...user, id: nextId }
+    writeUsers([...users, created])
+    return created
+}
+
+export async function updateUser(id, updates) {
+    const users = readUsers()
+    const index = users.findIndex((u) => String(u.id) === String(id))
+    if (index === -1) {
+        throw new Error('API error 404: Not Found')
+    }
+    const updated = { ...users[index], ...updates }
+    users[index] = updated
+    writeUsers(users)
+    return updated
 }

@@ -84,7 +84,7 @@ function Footer() {
                 <div>
                     <p className="font-heading font-bold uppercase tracking-wider mb-4">Explore</p>
                     <div className="w-14 h-14 flex flex-col items-center justify-center gap-1 border border-[#4d4d4d] rounded">
-                        <img src="/puma-logo.svg" alt="PUMA App" className="w-5 h-5 invert" />
+                        <img src={`${import.meta.env.BASE_URL}puma-logo.svg`} alt="PUMA App" className="w-5 h-5 invert" />
                         <span className="text-[8px] font-bold tracking-wider">APP</span>
                     </div>
                 </div>

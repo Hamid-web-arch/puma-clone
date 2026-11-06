@@ -16,7 +16,7 @@ function ReturnsHeader() {
         <header className="bg-puma-black text-white h-16 flex items-center">
             <div className="puma-container flex items-center justify-between gap-4">
                 <Link to="/" className="flex items-center shrink-0">
-                    <img src="/puma-logo.svg" alt="Logo" className="h-8 w-8 invert" />
+                    <img src={`${import.meta.env.BASE_URL}puma-logo.svg`} alt="Logo" className="h-8 w-8 invert" />
                 </Link>
                 <nav className="hidden sm:flex items-center gap-4 lg:gap-6 font-heading text-sm overflow-x-auto">
                     {returnsNavLinks.map(({ label, to }) => (
@@ -73,7 +73,7 @@ function ReturnsPage() {
 
                 <div
                     className="hidden md:block flex-1 bg-cover bg-center"
-                    style={{ backgroundImage: "url('/returns-bg.jpg')" }}
+                    style={{ backgroundImage: `url('${import.meta.env.BASE_URL}returns-bg.jpg')` }}
                 />
             </div>
         </div>

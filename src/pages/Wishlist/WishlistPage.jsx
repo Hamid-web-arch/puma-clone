@@ -30,7 +30,7 @@ function WishlistPage() {
                     </div>
                 ) : (
                     <div className="flex flex-col items-center text-center py-10">
-                        <img src="/heart.svg" alt="" className="w-24 h-24 opacity-20" />
+                        <img src={`${import.meta.env.BASE_URL}heart.svg`} alt="" className="w-24 h-24 opacity-20" />
                         <p className="font-heading text-2xl font-bold mt-6">Your Wishlist is Empty</p>
                     </div>
                 )

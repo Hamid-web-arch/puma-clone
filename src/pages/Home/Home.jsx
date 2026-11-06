@@ -21,7 +21,7 @@ function Home() {
 
       {error && (
         <p className="puma-container py-16 text-center text-puma-red">
-          Could not load products: {error}. Is the API server running? (npm run server)
+          Could not load products: {error}
         </p>
       )}
 

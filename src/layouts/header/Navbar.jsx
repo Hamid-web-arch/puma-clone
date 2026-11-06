@@ -14,7 +14,7 @@ function Navbar() {
   return (
     <nav className="flex items-center h-full">
       <Link to="/" className="flex items-center shrink-0">
-        <img src="/puma-logo.svg" alt="Logo" className="h-10 w-10 invert" />
+        <img src={`${import.meta.env.BASE_URL}puma-logo.svg`} alt="Logo" className="h-10 w-10 invert" />
       </Link>
 
       <button
