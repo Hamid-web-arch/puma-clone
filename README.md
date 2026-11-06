@@ -2,7 +2,11 @@
 
 **A responsive e-commerce storefront inspired by the PUMA online store, built with React 19, Vite and Tailwind CSS.**
 
-### 🔗 [Live Demo](https://hamid-web-arch.github.io/puma-clone/)
+## 🌐 Live Demo
+
+**👉 [hamid-web-arch.github.io/puma-clone](https://hamid-web-arch.github.io/puma-clone/)**
+
+The site is live. Open the link in your browser, no installation needed.
 
 ![React](https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=black)
 ![Vite](https://img.shields.io/badge/Vite-8-646CFF?logo=vite&logoColor=white)
@@ -15,7 +19,7 @@
 
 This was my final project for my web development course. I built a multi-page online store from scratch: browsing and filtering products, a cart and wishlist, and a full user account area.
 
-> **Try it with the demo account:** `testuser@puma.com` / `password123`, or sign up with any email.
+> **Try it on the live site with the demo account:** `testuser@puma.com` / `password123`, or sign up with any email.
 
 ---
 
@@ -60,7 +64,9 @@ This was my final project for my web development course. I built a multi-page on
 - **Performance:** code splitting with `React.lazy` and `Suspense`
 - **Deployment:** automatic build and deploy to GitHub Pages on every push
 
-## 🚀 Run Locally
+## 💻 Run Locally (for developers)
+
+Only needed if you want to run the code on your own computer. To just see the project, use the [Live Demo](https://hamid-web-arch.github.io/puma-clone/).
 
 ```bash
 git clone https://github.com/Hamid-web-arch/puma-clone.git
@@ -69,7 +75,7 @@ npm install
 npm run dev
 ```
 
-Then open http://localhost:5173/puma-clone/
+Then open http://localhost:5173/puma-clone/ (local development address)
 
 No backend is needed. Products come from `db.json`, and accounts, addresses and cards are stored in the browser's `localStorage`.
 
